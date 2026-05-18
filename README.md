@@ -828,12 +828,4 @@ For this parser package, cite the dissertation:
 
 ---
 
-## 18. Licence
-
-The parser code in this package is released under the MIT licence — free to use, modify, and distribute with attribution.
-
-The AIT-ADS dataset itself is licensed under **CC-BY 4.0** by AIT (Austrian Institute of Technology). Use is unrestricted (including commercial) provided the dataset is properly cited as above.
-
----
-
 _Author: Kumar Chaudhary (2562392). MRes Cybersecurity, University of Wolverhampton, 2026. Last updated for AIT-ADS Phase 1 reset._
