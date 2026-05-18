@@ -1,0 +1,390 @@
+{
+  "description": "B2 = severity threshold + known-bad rule groups + source-IP burst correlation.",
+  "config": {
+    "severity_threshold": 2,
+    "burst_count": 10,
+    "burst_window_seconds": 60
+  },
+  "train": {
+    "pipeline_name": "B2",
+    "split_name": "train",
+    "n_alerts": 1274635,
+    "mean_latency_ms": 0.000298,
+    "total_latency_ms": 379.624,
+    "overall": {
+      "tp": 876418,
+      "fp": 317391,
+      "tn": 78109,
+      "fn": 2717,
+      "total": 1274635,
+      "precision": 0.734136,
+      "recall": 0.996909,
+      "f1": 0.845578,
+      "false_positive_rate": 0.802506,
+      "accuracy": 0.748863
+    },
+    "by_scenario": {
+      "fox": {
+        "tp": 421034,
+        "fp": 32841,
+        "tn": 18610,
+        "fn": 619,
+        "total": 473104,
+        "precision": 0.927643,
+        "recall": 0.998532,
+        "f1": 0.961783,
+        "false_positive_rate": 0.638297,
+        "accuracy": 0.929276
+      },
+      "harrison": {
+        "tp": 430204,
+        "fp": 146317,
+        "tn": 16139,
+        "fn": 1288,
+        "total": 593948,
+        "precision": 0.746207,
+        "recall": 0.997015,
+        "f1": 0.853568,
+        "false_positive_rate": 0.900656,
+        "accuracy": 0.751485
+      },
+      "russellmitchell": {
+        "tp": 11741,
+        "fp": 24577,
+        "tn": 8952,
+        "fn": 274,
+        "total": 45544,
+        "precision": 0.323283,
+        "recall": 0.977195,
+        "f1": 0.485838,
+        "false_positive_rate": 0.733007,
+        "accuracy": 0.454352
+      },
+      "shaw": {
+        "tp": 6679,
+        "fp": 47912,
+        "tn": 15935,
+        "fn": 256,
+        "total": 70782,
+        "precision": 0.122346,
+        "recall": 0.963086,
+        "f1": 0.217111,
+        "false_positive_rate": 0.750419,
+        "accuracy": 0.319488
+      },
+      "wardbeck": {
+        "tp": 6760,
+        "fp": 65744,
+        "tn": 18473,
+        "fn": 280,
+        "total": 91257,
+        "precision": 0.093236,
+        "recall": 0.960227,
+        "f1": 0.169969,
+        "false_positive_rate": 0.78065,
+        "accuracy": 0.276505
+      }
+    },
+    "by_phase": {
+      "service_stop": {
+        "tp": 12,
+        "fp": 0,
+        "tn": 0,
+        "fn": 2,
+        "total": 14,
+        "precision": 1.0,
+        "recall": 0.857143,
+        "f1": 0.923077,
+        "false_positive_rate": 0.0,
+        "accuracy": 0.857143
+      },
+      "dnsteal": {
+        "tp": 2952,
+        "fp": 0,
+        "tn": 0,
+        "fn": 1514,
+        "total": 4466,
+        "precision": 1.0,
+        "recall": 0.660994,
+        "f1": 0.795902,
+        "false_positive_rate": 0.0,
+        "accuracy": 0.660994
+      },
+      "service_scans": {
+        "tp": 1556,
+        "fp": 0,
+        "tn": 0,
+        "fn": 76,
+        "total": 1632,
+        "precision": 1.0,
+        "recall": 0.953431,
+        "f1": 0.976161,
+        "false_positive_rate": 0.0,
+        "accuracy": 0.953431
+      },
+      "wpscan": {
+        "tp": 29248,
+        "fp": 0,
+        "tn": 0,
+        "fn": 12,
+        "total": 29260,
+        "precision": 1.0,
+        "recall": 0.99959,
+        "f1": 0.999795,
+        "false_positive_rate": 0.0,
+        "accuracy": 0.99959
+      },
+      "dirb": {
+        "tp": 839243,
+        "fp": 0,
+        "tn": 0,
+        "fn": 220,
+        "total": 839463,
+        "precision": 1.0,
+        "recall": 0.999738,
+        "f1": 0.999869,
+        "false_positive_rate": 0.0,
+        "accuracy": 0.999738
+      },
+      "webshell": {
+        "tp": 47,
+        "fp": 0,
+        "tn": 0,
+        "fn": 12,
+        "total": 59,
+        "precision": 1.0,
+        "recall": 0.79661,
+        "f1": 0.886792,
+        "false_positive_rate": 0.0,
+        "accuracy": 0.79661
+      },
+      "cracking": {
+        "tp": 2641,
+        "fp": 0,
+        "tn": 0,
+        "fn": 693,
+        "total": 3334,
+        "precision": 1.0,
+        "recall": 0.792142,
+        "f1": 0.884017,
+        "false_positive_rate": 0.0,
+        "accuracy": 0.792142
+      },
+      "reverse_shell": {
+        "tp": 32,
+        "fp": 0,
+        "tn": 0,
+        "fn": 3,
+        "total": 35,
+        "precision": 1.0,
+        "recall": 0.914286,
+        "f1": 0.955224,
+        "false_positive_rate": 0.0,
+        "accuracy": 0.914286
+      },
+      "privilege_escalation": {
+        "tp": 167,
+        "fp": 0,
+        "tn": 0,
+        "fn": 63,
+        "total": 230,
+        "precision": 1.0,
+        "recall": 0.726087,
+        "f1": 0.84131,
+        "false_positive_rate": 0.0,
+        "accuracy": 0.726087
+      },
+      "network_scans": {
+        "tp": 520,
+        "fp": 0,
+        "tn": 0,
+        "fn": 122,
+        "total": 642,
+        "precision": 1.0,
+        "recall": 0.809969,
+        "f1": 0.895009,
+        "false_positive_rate": 0.0,
+        "accuracy": 0.809969
+      }
+    }
+  },
+  "test": {
+    "pipeline_name": "B2",
+    "split_name": "test",
+    "n_alerts": 1381186,
+    "mean_latency_ms": 0.000302,
+    "total_latency_ms": 417.467,
+    "overall": {
+      "tp": 883763,
+      "fp": 431417,
+      "tn": 64323,
+      "fn": 1683,
+      "total": 1381186,
+      "precision": 0.671971,
+      "recall": 0.998099,
+      "f1": 0.803192,
+      "false_positive_rate": 0.870249,
+      "accuracy": 0.686429
+    },
+    "by_scenario": {
+      "santos": {
+        "tp": 12443,
+        "fp": 104712,
+        "tn": 13063,
+        "fn": 561,
+        "total": 130779,
+        "precision": 0.10621,
+        "recall": 0.956859,
+        "f1": 0.191197,
+        "false_positive_rate": 0.889085,
+        "accuracy": 0.195031
+      },
+      "wheeler": {
+        "tp": 432142,
+        "fp": 161379,
+        "tn": 22448,
+        "fn": 192,
+        "total": 616161,
+        "precision": 0.728099,
+        "recall": 0.999556,
+        "f1": 0.842501,
+        "false_positive_rate": 0.877885,
+        "accuracy": 0.737778
+      },
+      "wilson": {
+        "tp": 439178,
+        "fp": 165326,
+        "tn": 28812,
+        "fn": 930,
+        "total": 634246,
+        "precision": 0.72651,
+        "recall": 0.997887,
+        "f1": 0.840844,
+        "false_positive_rate": 0.85159,
+        "accuracy": 0.737868
+      }
+    },
+    "by_phase": {
+      "service_stop": {
+        "tp": 7,
+        "fp": 0,
+        "tn": 0,
+        "fn": 0,
+        "total": 7,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "false_positive_rate": 0.0,
+        "accuracy": 1.0
+      },
+      "dnsteal": {
+        "tp": 3250,
+        "fp": 0,
+        "tn": 0,
+        "fn": 914,
+        "total": 4164,
+        "precision": 1.0,
+        "recall": 0.7805,
+        "f1": 0.87672,
+        "false_positive_rate": 0.0,
+        "accuracy": 0.7805
+      },
+      "service_scans": {
+        "tp": 948,
+        "fp": 0,
+        "tn": 0,
+        "fn": 0,
+        "total": 948,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "false_positive_rate": 0.0,
+        "accuracy": 1.0
+      },
+      "dirb": {
+        "tp": 850501,
+        "fp": 0,
+        "tn": 0,
+        "fn": 180,
+        "total": 850681,
+        "precision": 1.0,
+        "recall": 0.999788,
+        "f1": 0.999894,
+        "false_positive_rate": 0.0,
+        "accuracy": 0.999788
+      },
+      "wpscan": {
+        "tp": 26340,
+        "fp": 0,
+        "tn": 0,
+        "fn": 6,
+        "total": 26346,
+        "precision": 1.0,
+        "recall": 0.999772,
+        "f1": 0.999886,
+        "false_positive_rate": 0.0,
+        "accuracy": 0.999772
+      },
+      "webshell": {
+        "tp": 62,
+        "fp": 0,
+        "tn": 0,
+        "fn": 6,
+        "total": 68,
+        "precision": 1.0,
+        "recall": 0.911765,
+        "f1": 0.953846,
+        "false_positive_rate": 0.0,
+        "accuracy": 0.911765
+      },
+      "cracking": {
+        "tp": 1583,
+        "fp": 0,
+        "tn": 0,
+        "fn": 479,
+        "total": 2062,
+        "precision": 1.0,
+        "recall": 0.767701,
+        "f1": 0.868587,
+        "false_positive_rate": 0.0,
+        "accuracy": 0.767701
+      },
+      "reverse_shell": {
+        "tp": 46,
+        "fp": 0,
+        "tn": 0,
+        "fn": 20,
+        "total": 66,
+        "precision": 1.0,
+        "recall": 0.69697,
+        "f1": 0.821429,
+        "false_positive_rate": 0.0,
+        "accuracy": 0.69697
+      },
+      "privilege_escalation": {
+        "tp": 86,
+        "fp": 0,
+        "tn": 0,
+        "fn": 36,
+        "total": 122,
+        "precision": 1.0,
+        "recall": 0.704918,
+        "f1": 0.826923,
+        "false_positive_rate": 0.0,
+        "accuracy": 0.704918
+      },
+      "network_scans": {
+        "tp": 940,
+        "fp": 0,
+        "tn": 0,
+        "fn": 42,
+        "total": 982,
+        "precision": 1.0,
+        "recall": 0.95723,
+        "f1": 0.978148,
+        "false_positive_rate": 0.0,
+        "accuracy": 0.95723
+      }
+    }
+  }
+}

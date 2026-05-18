@@ -1,0 +1,19 @@
+{
+  "B1": {
+    "best_threshold": 2,
+    "test_precision": 0.714957,
+    "test_recall": 0.996541,
+    "test_f1": 0.832585,
+    "test_fpr": 0.709634,
+    "test_mean_latency_ms": 0.000145,
+    "test_n_alerts": 1381186
+  },
+  "B2": {
+    "test_precision": 0.6719711370306726,
+    "test_recall": 0.9980992629702997,
+    "test_f1": 0.8031923643545064,
+    "test_fpr": 0.8702485173679751,
+    "test_mean_latency_ms": 0.00030225245688046806,
+    "test_n_alerts": 1381186
+  }
+}
