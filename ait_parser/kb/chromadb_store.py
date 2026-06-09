@@ -48,32 +48,64 @@ class KnowledgeStore:
         """Number of documents currently in the store."""
         return self._collection.count()
 
-    def add(self, docs: List[KnowledgeDocument], embeddings: List[List[float]]) -> None:
-        """Insert documents into the store.
+    # def add(self, docs: List[KnowledgeDocument], embeddings: List[List[float]]) -> None:
+    #     """Insert documents into the store.
 
-        ChromaDB upsert semantics: documents with the same doc_id will be
-        REPLACED on re-insert. This means rebuilds are idempotent — running
-        the pipeline twice does not duplicate entries.
+    #     ChromaDB upsert semantics: documents with the same doc_id will be
+    #     REPLACED on re-insert. This means rebuilds are idempotent — running
+    #     the pipeline twice does not duplicate entries.
+    #     """
+    #     if not docs:
+    #         return
+    #     assert len(docs) == len(embeddings), \
+    #         f"docs ({len(docs)}) and embeddings ({len(embeddings)}) length mismatch"
+
+    #     ids = [d.doc_id for d in docs]
+    #     documents = [d.text for d in docs]
+    #     # ChromaDB requires str/int/float/bool in metadata values
+    #     metadatas = [
+    #         {**d.metadata, "title": d.title, "source": d.source}
+    #         for d in docs
+    #     ]
+    #     # `upsert` over `add` so re-runs replace rather than crash on duplicate IDs
+    #     self._collection.upsert(
+    #         ids=ids,
+    #         documents=documents,
+    #         metadatas=metadatas,
+    #         embeddings=embeddings,
+    #     )
+
+
+    def add(self, docs: List[KnowledgeDocument], embeddings: List[List[float]]) -> None:
+        """Insert documents into the store, batched to respect ChromaDB's
+        max batch size (5461). Idempotent: re-inserting the same IDs replaces
+        previous entries (upsert semantics).
         """
         if not docs:
             return
         assert len(docs) == len(embeddings), \
             f"docs ({len(docs)}) and embeddings ({len(embeddings)}) length mismatch"
 
-        ids = [d.doc_id for d in docs]
-        documents = [d.text for d in docs]
-        # ChromaDB requires str/int/float/bool in metadata values
-        metadatas = [
-            {**d.metadata, "title": d.title, "source": d.source}
-            for d in docs
-        ]
-        # `upsert` over `add` so re-runs replace rather than crash on duplicate IDs
-        self._collection.upsert(
-            ids=ids,
-            documents=documents,
-            metadatas=metadatas,
-            embeddings=embeddings,
-        )
+        # ChromaDB's max batch size as of v1.x is 5461. Use 5000 to leave headroom.
+        BATCH_SIZE = 5000
+        n = len(docs)
+        for start in range(0, n, BATCH_SIZE):
+            end = min(start + BATCH_SIZE, n)
+            chunk_docs = docs[start:end]
+            chunk_vecs = embeddings[start:end]
+            ids = [d.doc_id for d in chunk_docs]
+            documents = [d.text for d in chunk_docs]
+            metadatas = [
+                {**d.metadata, "title": d.title, "source": d.source}
+                for d in chunk_docs
+            ]
+            self._collection.upsert(
+                ids=ids,
+                documents=documents,
+                metadatas=metadatas,
+                embeddings=chunk_vecs,
+            )
+            print(f"    Inserted batch {start:,} – {end:,} of {n:,}", flush=True)
 
     def query(
         self,
