@@ -1,0 +1,135 @@
+{
+  "pipeline_name": "LLM-only",
+  "split_name": "test",
+  "n_alerts": 20,
+  "mean_latency_ms": 10616.293666,
+  "total_latency_ms": 212325.873,
+  "overall": {
+    "tp": 5,
+    "fp": 0,
+    "tn": 7,
+    "fn": 8,
+    "total": 20,
+    "precision": 1.0,
+    "recall": 0.384615,
+    "f1": 0.555556,
+    "false_positive_rate": 0.0,
+    "accuracy": 0.6
+  },
+  "by_scenario": {
+    "wheeler": {
+      "tp": 5,
+      "fp": 0,
+      "tn": 4,
+      "fn": 2,
+      "total": 11,
+      "precision": 1.0,
+      "recall": 0.714286,
+      "f1": 0.833333,
+      "false_positive_rate": 0.0,
+      "accuracy": 0.818182
+    },
+    "wilson": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 2,
+      "fn": 4,
+      "total": 6,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_positive_rate": 0.0,
+      "accuracy": 0.333333
+    },
+    "santos": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 1,
+      "fn": 2,
+      "total": 3,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_positive_rate": 0.0,
+      "accuracy": 0.333333
+    }
+  },
+  "by_phase": {
+    "wpscan": {
+      "tp": 3,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0,
+      "total": 3,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "accuracy": 1.0
+    },
+    "network_scans": {
+      "tp": 1,
+      "fp": 0,
+      "tn": 0,
+      "fn": 1,
+      "total": 2,
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.666667,
+      "false_positive_rate": 0.0,
+      "accuracy": 0.5
+    },
+    "dirb": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 0,
+      "fn": 3,
+      "total": 3,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_positive_rate": 0.0,
+      "accuracy": 0.0
+    },
+    "dnsteal": {
+      "tp": 1,
+      "fp": 0,
+      "tn": 0,
+      "fn": 2,
+      "total": 3,
+      "precision": 1.0,
+      "recall": 0.333333,
+      "f1": 0.5,
+      "false_positive_rate": 0.0,
+      "accuracy": 0.333333
+    },
+    "service_scans": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 0,
+      "fn": 1,
+      "total": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_positive_rate": 0.0,
+      "accuracy": 0.0
+    },
+    "cracking": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 0,
+      "fn": 1,
+      "total": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_positive_rate": 0.0,
+      "accuracy": 0.0
+    }
+  },
+  "malformed_outputs": 0,
+  "wall_clock_seconds": 212.3,
+  "alerts_per_second": 0.09,
+  "model": "llama3.2:3b"
+}
