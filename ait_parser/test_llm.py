@@ -181,8 +181,8 @@ def run_tests():
         assert phase in p_only, f"{phase} missing from LLM-only prompt"
         assert phase in p_rag, f"{phase} missing from RAG prompt"
     # Only the RAG prompt contains the context section
-    assert "RELEVANT SECURITY CONTEXT" not in p_only
-    assert "RELEVANT SECURITY CONTEXT" in p_rag
+    assert "RETRIEVED SECURITY KNOWLEDGE" not in p_only
+    assert "RETRIEVED SECURITY KNOWLEDGE" in p_rag
     assert "T1110" in p_rag
     print("  prompts OK: LLM-only and RAG differ ONLY by context section")
 

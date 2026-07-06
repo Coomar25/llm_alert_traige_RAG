@@ -1,0 +1,81 @@
+{
+  "overall": {
+    "rule_based": null,
+    "llm_only": {
+      "precision": 0.788235,
+      "recall": 0.644231,
+      "f1": 0.708995,
+      "fpr": 0.72,
+      "n_alerts": 129,
+      "mean_latency_ms": 54554.626357
+    },
+    "llm_rag": {
+      "precision": 0.814286,
+      "recall": 0.548077,
+      "f1": 0.655172,
+      "fpr": 0.52,
+      "n_alerts": 129,
+      "mean_latency_ms": 107811.518605
+    }
+  },
+  "per_phase_recall": {
+    "network_scans": {
+      "llm_only": 1.0,
+      "llm_rag": 0.75,
+      "delta": -0.25
+    },
+    "service_scans": {
+      "llm_only": 0.666667,
+      "llm_rag": 0.666667,
+      "delta": 0.0
+    },
+    "dirb": {
+      "llm_only": 0.666667,
+      "llm_rag": 0.666667,
+      "delta": 0.0
+    },
+    "wpscan": {
+      "llm_only": 1.0,
+      "llm_rag": 1.0,
+      "delta": 0.0
+    },
+    "webshell": {
+      "llm_only": 1.0,
+      "llm_rag": 0.933333,
+      "delta": -0.06666700000000003
+    },
+    "cracking": {
+      "llm_only": 0.466667,
+      "llm_rag": 0.266667,
+      "delta": -0.2
+    },
+    "reverse_shell": {
+      "llm_only": 0.75,
+      "llm_rag": 0.583333,
+      "delta": -0.166667
+    },
+    "privilege_escalation": {
+      "llm_only": 0.333333,
+      "llm_rag": 0.266667,
+      "delta": -0.066666
+    },
+    "service_stop": {
+      "llm_only": 0.142857,
+      "llm_rag": 0.142857,
+      "delta": 0.0
+    },
+    "dnsteal": {
+      "llm_only": 0.5,
+      "llm_rag": 0.416667,
+      "delta": -0.08333299999999999
+    }
+  },
+  "rag_effect": {
+    "delta_f1": -0.053823000000000065,
+    "delta_recall": -0.09615399999999996,
+    "delta_precision": 0.026050999999999935,
+    "delta_fpr": -0.19999999999999996,
+    "phases_improved": 0,
+    "phases_worsened": 6
+  }
+}

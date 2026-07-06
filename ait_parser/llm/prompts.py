@@ -139,16 +139,19 @@ def build_rag_prompt(alert_text: str, retrieved_context: str) -> str:
 
 {_FEW_SHOT}
 
-Use the following retrieved security knowledge to inform your analysis. \
-This context may include MITRE ATT&CK techniques, known vulnerabilities (CVEs), \
-and SOC response runbooks relevant to the alert. Consider it carefully, but \
-rely on the alert details for your final decision.
+The following retrieved security knowledge MAY be relevant. It can include \
+MITRE ATT&CK techniques, known vulnerabilities (CVEs), and SOC response \
+runbooks. Some entries may be only loosely related or irrelevant — use them \
+only where they genuinely match the alert, and IGNORE entries that do not \
+fit. Your decision must be driven primarily by the alert's own details \
+(especially the rule categories and the raw log message).
 
---- RELEVANT SECURITY CONTEXT ---
+--- RETRIEVED SECURITY KNOWLEDGE (may include irrelevant entries) ---
 {retrieved_context}
---- END CONTEXT ---
+--- END KNOWLEDGE ---
 
-Now analyse this alert:
+Now analyse this alert. Base your decision on the alert details first, using \
+the retrieved knowledge only where it clearly applies:
 --- ALERT ---
 {alert_text}
 --- END ALERT ---

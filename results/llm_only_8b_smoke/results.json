@@ -1,0 +1,100 @@
+{
+  "pipeline_name": "LLM-only",
+  "split_name": "test",
+  "n_alerts": 5,
+  "mean_latency_ms": 66638.66,
+  "total_latency_ms": 333193.3,
+  "overall": {
+    "tp": 3,
+    "fp": 0,
+    "tn": 0,
+    "fn": 2,
+    "total": 5,
+    "precision": 1.0,
+    "recall": 0.6,
+    "f1": 0.75,
+    "false_positive_rate": 0.0,
+    "accuracy": 0.6
+  },
+  "by_scenario": {
+    "santos": {
+      "tp": 1,
+      "fp": 0,
+      "tn": 0,
+      "fn": 2,
+      "total": 3,
+      "precision": 1.0,
+      "recall": 0.333333,
+      "f1": 0.5,
+      "false_positive_rate": 0.0,
+      "accuracy": 0.333333
+    },
+    "wheeler": {
+      "tp": 2,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0,
+      "total": 2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "accuracy": 1.0
+    }
+  },
+  "by_phase": {
+    "reverse_shell": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 0,
+      "fn": 1,
+      "total": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_positive_rate": 0.0,
+      "accuracy": 0.0
+    },
+    "privilege_escalation": {
+      "tp": 1,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0,
+      "total": 1,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "accuracy": 1.0
+    },
+    "cracking": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 0,
+      "fn": 1,
+      "total": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_positive_rate": 0.0,
+      "accuracy": 0.0
+    },
+    "network_scans": {
+      "tp": 2,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0,
+      "total": 2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "accuracy": 1.0
+    }
+  },
+  "malformed_outputs": 0,
+  "wall_clock_seconds": 129.3,
+  "throughput_alerts_per_second": 0.039,
+  "workers": 3,
+  "model": "llama3.1:8b"
+}
