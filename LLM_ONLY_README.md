@@ -4,12 +4,15 @@ This document is the complete reference for the LLM-only triage pipeline: how
 it works, every design decision, the debugging journey that got it working,
 and the empirical results on the full evaluation sample.
 
+![alt text](image-1.png)
+
 The LLM-only pipeline is the **ablation baseline** for the dissertation's core
 experiment. It uses a large language model to triage each alert using only the
 model's pre-trained knowledge, with no retrieved context. Comparing it against
 the LLM+RAG pipeline (identical in every way except the presence of retrieved
 context) isolates the contribution of retrieval — which is the dissertation's
 central research question.
+![alt text](image.png)
 
 ```
 Stage 1: ingest.py                ── parse 16 JSON files into unified schema   [DONE]
@@ -337,10 +340,10 @@ The sampler applies per-phase quotas:
 
 Two profiles are provided:
 
-| Profile | Common-phase caps | Benign | Total | Use case |
-|---|---|---|---|---|
-| `full` | dirb 800, others 400-500 | 1500 | ~4,800 | GPU inference |
-| `small` | dirb 250, others 150-200 | 600 | ~2,000 | CPU inference |
+| Profile | Common-phase caps        | Benign | Total  | Use case      |
+| ------- | ------------------------ | ------ | ------ | ------------- |
+| `full`  | dirb 800, others 400-500 | 1500   | ~4,800 | GPU inference |
+| `small` | dirb 250, others 150-200 | 600    | ~2,000 | CPU inference |
 
 The rare phases are identical across profiles — only common-phase and benign
 caps differ. This preserves per-phase precision/recall on the phases that carry
@@ -622,26 +625,26 @@ It is conservative — 1,106 false negatives versus only 86 false positives.
 
 ### 12.2 Per-scenario metrics
 
-| Scenario | Precision | Recall | F1 | FPR |
-|---|---|---|---|---|
-| wilson | 0.971 | 0.099 | 0.180 | 0.008 |
-| wheeler | 0.828 | 0.401 | 0.540 | 0.177 |
-| santos | 0.541 | 0.190 | 0.281 | 0.319 |
+| Scenario | Precision | Recall | F1    | FPR   |
+| -------- | --------- | ------ | ----- | ----- |
+| wilson   | 0.971     | 0.099  | 0.180 | 0.008 |
+| wheeler  | 0.828     | 0.401  | 0.540 | 0.177 |
+| santos   | 0.541     | 0.190  | 0.281 | 0.319 |
 
 ### 12.3 Per-phase recall — the key result
 
-| Phase | Recall | Interpretation |
-|---|---|---|
-| wpscan | 0.950 | Recognised — attack signature self-evident in the raw request |
-| network_scans | 0.320 | Partial |
-| service_scans | 0.213 | Partial |
-| reverse_shell | 0.121 | Mostly missed |
-| dirb | 0.068 | Almost entirely missed |
-| dnsteal | 0.050 | Almost entirely missed |
-| privilege_escalation | 0.016 | Missed all but 2 of 122 |
-| cracking | 0.000 | Missed all 200 |
-| webshell | 0.000 | Missed all 68 |
-| service_stop | 0.000 | Missed all 7 |
+| Phase                | Recall | Interpretation                                                |
+| -------------------- | ------ | ------------------------------------------------------------- |
+| wpscan               | 0.950  | Recognised — attack signature self-evident in the raw request |
+| network_scans        | 0.320  | Partial                                                       |
+| service_scans        | 0.213  | Partial                                                       |
+| reverse_shell        | 0.121  | Mostly missed                                                 |
+| dirb                 | 0.068  | Almost entirely missed                                        |
+| dnsteal              | 0.050  | Almost entirely missed                                        |
+| privilege_escalation | 0.016  | Missed all but 2 of 122                                       |
+| cracking             | 0.000  | Missed all 200                                                |
+| webshell             | 0.000  | Missed all 68                                                 |
+| service_stop         | 0.000  | Missed all 7                                                  |
 
 Precision was 1.0 on nearly every attack phase — when the model detects an
 attack it rarely mislabels the phase. The false positives were concentrated in
@@ -715,7 +718,7 @@ To be disclosed in the dissertation.
 
 Llama 3.2 3B is a small model chosen for CPU tractability. A larger model
 (Mistral-7B, or a hosted frontier model) would likely achieve higher recall.
-The dissertation's contribution is the *relative* comparison (LLM-only vs
+The dissertation's contribution is the _relative_ comparison (LLM-only vs
 LLM+RAG), which is valid regardless of absolute model capability, but the
 absolute numbers would differ with a stronger model.
 
@@ -744,12 +747,12 @@ but the absolute counts for the rarest phases (service_stop, n=7) are small.
 
 ## 15. What Comes Next
 
-| Stage | Purpose | Status |
-|---|---|---|
-| LLM+RAG pipeline (`run_llm_rag.py`) | Same model + retrieved context | Built, pending run |
-| Three-way comparison (`compare_pipelines.py`) | Rules vs LLM-only vs LLM+RAG | Built, pending inputs |
-| Explanation-quality evaluation (M9) | Faithfulness / supportedness metrics | Pending |
-| Dissertation results chapter | Write up the comparison | In progress |
+| Stage                                         | Purpose                              | Status                |
+| --------------------------------------------- | ------------------------------------ | --------------------- |
+| LLM+RAG pipeline (`run_llm_rag.py`)           | Same model + retrieved context       | Built, pending run    |
+| Three-way comparison (`compare_pipelines.py`) | Rules vs LLM-only vs LLM+RAG         | Built, pending inputs |
+| Explanation-quality evaluation (M9)           | Faithfulness / supportedness metrics | Pending               |
+| Dissertation results chapter                  | Write up the comparison              | In progress           |
 
 The LLM+RAG pipeline reuses this pipeline's sampler, alert representation,
 prompt template (with the added context section), Ollama client, concurrency
@@ -814,6 +817,6 @@ python3 ait_parser/run_llm_only.py \
 
 ---
 
-*Last updated: after the full LLM-only run on 2,013 AIT-ADS test-split alerts.*
-*Stage 5a (M8 Part A) of the dissertation pipeline. Author: Kumar Chaudhary
-(2562392), MRes Cybersecurity, University of Wolverhampton.*
+_Last updated: after the full LLM-only run on 2,013 AIT-ADS test-split alerts._
+_Stage 5a (M8 Part A) of the dissertation pipeline. Author: Kumar Chaudhary
+(2562392), MRes Cybersecurity, University of Wolverhampton._
